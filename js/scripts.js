@@ -1,5 +1,6 @@
 function primeSift(number){
   var array = [...Array(number + 1).keys()].splice(1);
+  array[0] = 0
   console.log(array)
   var prime = 2;
   while (prime <= number){
@@ -11,7 +12,7 @@ function primeSift(number){
     }
     prime++;
   }
-  console.log(array);
+  
   var results = array.filter(x => !(x===0));
   return results;
 }
@@ -19,10 +20,14 @@ function primeSift(number){
 $(document).ready(function(){
   $("form").submit(function(e){
     e.preventDefault();
+    clear();
     var number = parseInt($("input").val());
     var results = primeSift(number);
     results.forEach(function(item){
       $("ul").append("<li>"+ item +"</li>")
     });
+    function clear(){
+      $("li").remove();
+    }
   });
 })
